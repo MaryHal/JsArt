@@ -1,14 +1,26 @@
 (function() {
     var intervalId;
 
-    function run() {
-        // Setup our rendering context
+    window.onload = function() {
+        // Set Canvas
         var c = document.getElementById("flood");
         c.width = 640;
         c.height = 480;
+        c.style.border = "2px solid #333333";
 
+        // Center buttons
+        // var buttonContainer = document.getElementById("buttonContainer");
+        // buttonContainer.style.textAlign = "center";
+
+        var start = document.getElementById("start");
+        start.onclick = run;
+    };
+
+    function run() {
+        // Setup our rendering context
+        var c = document.getElementById("flood");
         var ctx = c.getContext("2d");
-        ctx.clearRect(0, 0, c.width, c.height);
+        clearCanvas();
 
         var img = ctx.createImageData(c.width, c.height);
 
@@ -56,19 +68,12 @@
         }, FPS);
     }
 
-    window.onload = function() {
-        // Set Canvas
+    function clearCanvas() {
         var c = document.getElementById("flood");
-        c.width = 640;
-        c.height = 480;
-        c.style.border = "2px solid #333333";
+        var ctx = c.getContext("2d");
 
-        // var buttonContainer = document.getElementById("buttonContainer");
-        // buttonContainer.style.textAlign = "center";
-
-        var start = document.getElementById("start");
-        start.onclick = run;
-    };
+        ctx.clearRect(0, 0, c.width, c.height);
+    }
 
     // Returns a list of adjacent pixels
     function adjPixels(myimg, x, y, w, h) {
