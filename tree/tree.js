@@ -1,10 +1,10 @@
 (function() {
-    var timer;
-    var interval = 20;
+    var timer = null;
+    var interval = 15;
     var root = null;
     var nodes = [];
 
-    var u0 = 460;
+    var u0 = 440;
     var grow_t = 0.1;
     var branch_d = 0.85;
     var branch_t = 0.5;
@@ -32,11 +32,24 @@
         c.height = 400;
         c.style.border = "2px solid #333333";
 
+        // Center Canvas
+        c.style.display = "block";
+        c.style.marginTop   = "0";
+        c.style.marginLeft  = "auto";
+        c.style.marginRight = "auto";
+
+        // Center buttons
+        var buttonContainer = document.getElementById("buttonContainer");
+        buttonContainer.style.textAlign = "center";
+
         var start = document.getElementById("start");
         start.onclick = run;
     };
 
     function run() {
+        if (timer != null)
+            return;
+
         // Setup our rendering context
         var c = document.getElementById("tree");
         ctx = c.getContext("2d");
@@ -65,12 +78,10 @@
 
         nodes.push(root);
 
-        timer = setInterval(growTree, interval)
+        timer = setInterval(growTree, interval);
     }
 
     function growTree() {
-        var stop = false;
-
         for (var i = nodes.length - 1; i >= 0; i--)
         {
             var current = nodes[i];
@@ -100,7 +111,6 @@
             nodes[i] = child;
 
             // branch
-            
             if (child.v >= 10 && Math.random() > branch_d && Math.random() > 1 - ((u0 - child.u) / u0))
             {
                 branch = new TreeNode();
@@ -122,7 +132,7 @@
             }
         }
 
-        if (stop)
+        if (nodes.length == 0)
         {
             clearTimeout(timer);
             timer = null;
@@ -130,7 +140,7 @@
     }
 
     function drawNode(node) {
-        ctx.lineWidth = (node.u / u0) * 3;
+        ctx.lineWidth = (node.u / u0) * 8;
 
         // Bound line width
         if (ctx.lineWidth < 1)
