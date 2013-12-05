@@ -1,6 +1,18 @@
-/*jslint browser:true */
 (function () {
-    function init() {
+    window.onload = function () {
+        // Set Canvas
+        var c = document.getElementById("cave");
+        c.width = 640;
+        c.height = 480;
+        c.style.border = "2px solid #333333";
+
+        var reset = document.getElementById("reset");
+        reset.onclick = run;
+
+        run();
+    };
+
+    function run() {
         var c = document.getElementById("cave");
         var cellSize = 8;
         var cellWidth = c.width / cellSize;
@@ -160,17 +172,5 @@
         b = (b + m) * 255;
         return [r, g, b];
     }
-
-    window.onload = function () {
-        // Set Canvas
-        var c = document.getElementById("cave");
-        c.width = 640;
-        c.height = 480;
-        c.style.border = "2px solid #333333";
-
-        var reset = document.getElementById("reset");
-        reset.onclick = init;
-
-        init();
-    };
 })();
+
