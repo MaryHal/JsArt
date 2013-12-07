@@ -1,9 +1,17 @@
 (function() {
+    // Timing
     var timer = null;
     var interval = 15;
+
+    // Node handling
     var root = null;
     var nodes = [];
+    
+    // Customization
+    var initialWidth = 8;
+    var leafRadius = 1.5;
 
+    // Initial Values
     var u0 = 440;
     var grow_t = 0.1;
     var branch_d = 0.85;
@@ -140,7 +148,7 @@
     }
 
     function drawNode(node) {
-        ctx.lineWidth = (node.u / u0) * 8;
+        ctx.lineWidth = (node.u / u0) * initialWidth;
 
         // Bound line width
         if (ctx.lineWidth < 1)
@@ -157,7 +165,7 @@
 
     function drawLeaf(node) {
         ctx.fillStyle = 'hsl(' + node.hue + ', 100%, 50%)';
-        ctx.arc(node.origin[0], node.origin[1], 1.5, 0, Math.PI * 2, true);
+        ctx.arc(node.origin[0], node.origin[1], leafRadius, 0, Math.PI * 2);
         ctx.fill();
     }
 
