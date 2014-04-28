@@ -1,4 +1,4 @@
-(function() {
+(function () {
     // Timing
     var timer = null;
     var interval = 15;
@@ -6,7 +6,7 @@
     // Node handling
     var root = null;
     var nodes = [];
-    
+
     // Customization
     var initialWidth = 8;
     var leafRadius = 1.5;
@@ -132,7 +132,7 @@
                 branch.old_u = branch.u;
                 branch.old_r = branch.r;
 
-                branch.origin = [child.origin[0] + Math.sin(child.r + Math.PI), 
+                branch.origin = [child.origin[0] + Math.sin(child.r + Math.PI),
                                  child.origin[1] + Math.cos(child.r + Math.PI)];
                 drawNode(branch);
 
@@ -177,4 +177,3 @@
         }
     }
 })();
-

@@ -52,8 +52,9 @@
                     var pn = adj[pi];
 
                     // and color it
-                    rgb = hsvToRgb(((startColor+stack.length/(c.width*c.height))*2*Math.PI)%(2*Math.PI), 1, 1);
-                    setPixel(img, pn[0], pn[1], rgb[0], rgb[1], rgb[2], 255);
+                    // rgb = hsvToRgb(((startColor+stack.length/(c.width*c.height))*2*Math.PI)%(2*Math.PI), 1, 1);
+                    rgb = $.husl.toRGB(((startColor+stack.length/(c.width*c.height))*360)%(360), 70, 70);
+                    setPixel(img, pn[0], pn[1], rgb[0] * 255, rgb[1] * 255, rgb[2] * 255, 255);
 
                     stack.push(pn);
                     ++steps;
