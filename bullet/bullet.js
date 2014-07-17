@@ -7,6 +7,12 @@
         c.height = SC_H;
         c.style.border = "2px solid #333333";
 
+        // Center Canvas
+        c.style.display = "block";
+        c.style.marginTop   = "0";
+        c.style.marginLeft  = "auto";
+        c.style.marginRight = "auto";
+
         this.context = c.getContext("2d");
         this.context.clearRect(0, 0, c.width, c.height);
         this.context.textAlign = "right";
